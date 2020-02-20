@@ -4,19 +4,25 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  * Juego Oscurilandia La Secuela
- * @author Álvaro Álvarez Olivares, Mirko Bravo Hidalgo, Yesenia Llanos Pérez, Natalia Ponce Ávila.
+ * @author Alvaro Alvarez Olivares, Mirko Bravo Hidalgo, Yesenia Llanos Perez, Natalia Ponce Avila.
  * @see https://github.com/AlvarezAO/Oscurilandia
  * @version 20/02/2020
  * 
  */
-
 public class Tablero {
 	
+	//Atributos de la clase
 	private ArrayList<Huevo> listaHuevo = new ArrayList<Huevo>();	
 	private Carro listaCarros[] = new Carro[18];	
 	private char matriz[][] = new char[15][15];
 	int sumaPuntaje = 0;
+	int contk = 1;
+	int contc=1;
+	int contt=1;
 
+	/**
+	 * metodo que imprime matriz por pantalla
+	 */
 	public void mostrarMatriz() {
 		
 		for(int i = 0; i<15; i++) {
@@ -26,8 +32,11 @@ public class Tablero {
 			}
 			System.out.println("");
 		}
-	}
+	} // fin metodo 
 	
+	/**
+	 * metodo que almacena instanciaciones dentro de la lista 
+	 */
 	public void crearCarro() {
 		listaCarros[0] = crearKromi();
 		listaCarros[1] = crearKromi();
@@ -47,7 +56,7 @@ public class Tablero {
 		listaCarros[15] = crearTrupalla();
 		listaCarros[16] = crearTrupalla();
 		listaCarros[17] = crearTrupalla();		
-	}
+	} // fin metodo
 	
 	public int getSumaPuntaje() {
 		return sumaPuntaje;
@@ -57,8 +66,10 @@ public class Tablero {
 		this.sumaPuntaje = sumaPuntaje;
 	}
 
-	
-	
+	/**
+	 * metodo que crea el objeto Kromi con sus parametros correspondientes
+	 * @return objeto Kromi
+	 */
 	public Kromi crearKromi() {
 		int cantOcupantes;
 		String fechaIngreso, yearFabricacion, marca;
@@ -68,7 +79,9 @@ public class Tablero {
 		int x3;
 		boolean flag = false;
 		
-		int cont = 1;
+	    /**
+	     * ciclo que crea las coordenadas donde estara cada Kromi
+	     */
 		do {
 			
 			x = (int)(Math.random()*13);
@@ -85,20 +98,26 @@ public class Tablero {
 				}			
 			}
 			
-			cantOcupantes = Integer.parseInt(JOptionPane.showInputDialog("Kromi N°"+cont+"\nCantidad Ocupantes"));
-			fechaIngreso = JOptionPane.showInputDialog("Kromi N°"+cont+"\nIngresa la fecha de ingreso");
-			yearFabricacion = JOptionPane.showInputDialog("Kromi N°"+cont+"\nIngresa el año de fabricacion");
-			marca = JOptionPane.showInputDialog("Kromi N°"+cont+"\nIngresa la marca del vehiculo");
-			cont++;
+			
 			x2 = x+1;
 			x3 = x+2;
 			
-		} while (!flag);		
+		} while (!flag);
+		
+		cantOcupantes = Integer.parseInt(JOptionPane.showInputDialog("Kromi N°"+contk+"\nCantidad Ocupantes"));
+		fechaIngreso = JOptionPane.showInputDialog("Kromi N°"+contk+"\nIngresa la fecha de ingreso");
+		yearFabricacion = JOptionPane.showInputDialog("Kromi N°"+contk+"\nIngresa el año de fabricacion");
+		marca = JOptionPane.showInputDialog("Kromi N°"+contk+"\nIngresa la marca del vehiculo");
+		contk++;
 		
 		 return new Kromi(cantOcupantes, fechaIngreso, x, y, yearFabricacion, marca, x2, y, x3, y);
 		 
 	}	
 	
+	/**
+	 * metodo que crea el objeto Caguano con sus parametros correspondientes
+	 * @return objeto Caguano
+	 */
 	public Caguano crearCaguano() {
 		int cantOcupantes, alcanceTiro;
 		String fechaIngreso, colorConfeti;
@@ -107,9 +126,11 @@ public class Tablero {
 		int y2;
 		boolean flag = false;
 		
-		
+	    /**
+	     * ciclo que crea las coordenadas donde estara cada Caguano
+	     */
 		do {
-			int cont = 1;
+		
 			x = (int)(Math.random()*15);
 			y = (int)(Math.random()*14);
 			
@@ -123,28 +144,36 @@ public class Tablero {
 				
 				}			
 			}
-			
-			cantOcupantes = Integer.parseInt(JOptionPane.showInputDialog("Caguano N°"+cont+"\nCantidad Ocupantes"));
-			fechaIngreso = JOptionPane.showInputDialog("Caguano N°"+cont+"\nIngresa la fecha de ingreso");
-			alcanceTiro = Integer.parseInt(JOptionPane.showInputDialog("Caguano N°"+cont+"\nAlcance de Tiro en Mts"));
-			colorConfeti = JOptionPane.showInputDialog("Caguano N°"+cont+"\nColor Confeti");
+		} while (!flag);
+			cantOcupantes = Integer.parseInt(JOptionPane.showInputDialog("Caguano N°"+contc+"\nCantidad Ocupantes"));
+			fechaIngreso = JOptionPane.showInputDialog("Caguano N°"+contc+"\nIngresa la fecha de ingreso");
+			alcanceTiro = Integer.parseInt(JOptionPane.showInputDialog("Caguano N°"+contc+"\nAlcance de Tiro en Mts"));
+			colorConfeti = JOptionPane.showInputDialog("Caguano N°"+contc+"\nColor Confeti");
 			y2 = y+1;
-			cont ++;
-		} while (!flag);		
+			contc ++;
+				
 		
 		 return new Caguano(cantOcupantes, fechaIngreso, x, y, alcanceTiro, colorConfeti, x, y2);
 		 
 	}
 	
+	/**
+	 * metodo que crea el objeto Trupalla con sus parametros correspondientes
+	 * @return objeto Trupalla
+	 */
 	public Trupalla crearTrupalla() {
 		int cantOcupantes, nivelArmadura;
 		String fechaIngreso, nombreChofer;
 		int x;
 		int y;
 		boolean flag = false;
-				
+		
+	    /**
+	     * ciclo que crea las coordenadas donde estara cada Trupalla
+	     */
+
 		do {
-			int cont = 1;
+			
 			x = (int)(Math.random()*15);
 			y = (int)(Math.random()*14);
 			
@@ -153,34 +182,50 @@ public class Tablero {
 				flag = true;
 				matriz[x][y] = 'T';
 			}
-			
-			cantOcupantes = Integer.parseInt(JOptionPane.showInputDialog("Trupalla N°"+cont+"\nCantidad Ocupantes"));
-			fechaIngreso = JOptionPane.showInputDialog("Trupalla N°"+cont+"\nIngresa la fecha de ingreso");
-			nivelArmadura = Integer.parseInt(JOptionPane.showInputDialog("Trupalla N°"+cont+"\nNivel Armadura (1 - 5)"));
-			nombreChofer = JOptionPane.showInputDialog("Trupalla N°"+cont+"\nNombre de Chofer");
-			
-		} while (!flag);		
+		} while (!flag); 
+			cantOcupantes = Integer.parseInt(JOptionPane.showInputDialog("Trupalla N°"+contt+"\nCantidad Ocupantes"));
+			fechaIngreso = JOptionPane.showInputDialog("Trupalla N°"+contt+"\nIngresa la fecha de ingreso");
+			nivelArmadura = Integer.parseInt(JOptionPane.showInputDialog("Trupalla N°"+contt+"\nNivel Armadura (1 - 5)"));
+			nombreChofer = JOptionPane.showInputDialog("Trupalla N°"+contt+"\nNombre de Chofer");
+			 contt++;
+				
 		
 		 return new Trupalla(cantOcupantes, fechaIngreso, x, y, nivelArmadura, nombreChofer);
-		 
+		
 	}
 	
+	/**
+	 * metodo que muestra la matriz con los carro creados
+	 */
 	public void muestraCarro() {
 		for(int i= 0; i<listaCarros.length;i++) {
 			System.out.println(listaCarros[i]);
 		}
-	}
+	} // Fin metodo
 	
+	/**
+	 * Metodo que lanza el huevo a una coordenada dada por el usuario
+	 * @return Objeto huevo con sus parametros correspondientes
+	 */
 	public Huevo lanzarHuevo() {
 		
 		int x;
 		int y; 
 		int puntaje_huevo=0;
+		boolean cordenadas_validas=false;
 		
+		do { 
 		x = Integer.parseInt(JOptionPane.showInputDialog("Ingresa Coordenada X"));
 		y = Integer.parseInt(JOptionPane.showInputDialog("Ingresa Coordenada Y"));
-				
-			if(matriz[x][y] == 'K' ){
+			
+		if (x < 15 && x >= 0 && y < 15 && y >= 0) { // condicion para validar coordenadas validas
+			cordenadas_validas=true;
+		}else {
+			JOptionPane.showMessageDialog(null, "Cordenadas incorrectas(0-14)");
+		}
+		
+		}while(!cordenadas_validas); // cambia caracter de la coordenada 		
+			if(matriz[x][y] == 'K' ){ 
 				matriz[x][y] = 'H';
 				
 				puntaje_huevo= encontrarKromi(x,y);				
@@ -192,7 +237,9 @@ public class Tablero {
 					puntaje_huevo = encontrarCaguano(x,y);
 					
 				} 		else if (matriz[x][y] == 'T') {
-							sumaPuntaje = sumaPuntaje +1;
+							puntaje_huevo+=1;
+							System.out.println("Trupalla destruida");
+							
 							matriz[x][y] = 'H';
 							
 						} 		else {
@@ -203,19 +250,30 @@ public class Tablero {
 		sumaPuntaje+=puntaje_huevo;			
 		return new Huevo(x, y, puntaje_huevo);
 	}	
-		
+	
+	/**
+	 * metodo que agrega un huevo a la lista de Huevos
+	 */
 	public void agregaHuevo() {
 		listaHuevo.add(lanzarHuevo());		
-	}
+	}// fin metodo
 	
+	/**
+	 * metodo que muestra la informacion del huevo
+	 */
 	public void mostrarHuevo() {
 		for(Huevo egg: listaHuevo) {
 			System.out.println(egg);
 		}
-	}
+	} // fin metodo
 	
 
-	
+	/**
+	 * metodo que identifica una Kromi cuando se lanza el huevo
+	 * @param huevoX
+	 * @param huevoY
+	 * @return puntaje obtenido si destrulle las coordenadas de Kromi
+	 */
 	public int encontrarKromi(int huevoX, int huevoY) {
 	
 		int puntaje = 0;
@@ -231,8 +289,10 @@ public class Tablero {
 						&& matriz[buscador_kromi.getX2()][buscador_kromi.getY2()]=='H'
 						&& matriz[buscador_kromi.getX3()][buscador_kromi.getY3()]=='H') {
 					puntaje = 13;
+					System.out.println("Kromi "+(i+1)+ " destruida ( Ocupantes: "+buscador_kromi.getCantOcupantes()+")");
 				}
 				else {
+					System.out.println("Kromi "+(i+1)+ " golpeada");
 					puntaje = 3;
 				}
 			}
@@ -240,6 +300,12 @@ public class Tablero {
 			return puntaje;		
 	}
 	
+	/**
+	 * metodo que identifica una Caguano cuando se lanza el huevo
+	 * @param huevoX
+	 * @param huevoY
+	 * @return puntaje obtenido si destrulle las coordenadas de Caguano
+	 */
 	public int encontrarCaguano(int huevoX, int huevoY) {
 		
 		int puntaje=0;		
@@ -255,9 +321,11 @@ public class Tablero {
 						&& matriz[buscador_caguano.getX2()][buscador_caguano.getY2()]=='H') {
 					
 					puntaje = 9;
+					System.out.println("Caguano "+(i+1)+ " destruido ( Confeti: "+buscador_caguano.getColorConfeti()+")");
 				}
 				else {
 					puntaje = 2;
+					System.out.println("Caguano "+(i+1)+ " golpeado");
 				}
 			}
 		}

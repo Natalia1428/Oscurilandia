@@ -1,33 +1,37 @@
 package game;
 
-import javax.swing.JOptionPane;
+
+import javax.swing.*;
 
 /**
  * Juego Oscurilandia La Secuela
- * @author Alvaro Alvarez Olivares, Mirko Bravo Hidalgo, Yesenia Llanos Pérez, Natalia Ponce Avila.
+ * @author Alvaro Alvarez Olivares, Mirko Bravo Hidalgo, Yesenia Llanos Perez, Natalia Ponce Avila.
  * @see https://github.com/AlvarezAO/Oscurilandia
  * @version 20/02/2020
+ * 
  */
 
 public class MainMenu {
 
 	/**
-	 * Metodo main de la clase
+	 * Metodo main Menu
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Tablero tablaUno = new Tablero();
 		
 		
-		int opcion; 
+		int opcion;
 		
-		do { // se crea ciclo para ingresar una opcion del menu			
-		opcion = Integer.parseInt(JOptionPane.showInputDialog("Menú Estrategia FirstLine \n1 - Agregar Carros \n2 - "
-				+ "Mostrar Carros \n3 - Jugar \n4 - Salir"));	
+		/**
+		 * inicio ciclo para pedir opcion del menu
+		 */
+		do { 			
+		opcion = Integer.parseInt(JOptionPane.showInputDialog("Menú Estrategia FirstLine \n1 - Agregar Carros \n2 - Mostrar Carros \n3 - Jugar \n4 - Salir"));	
 			
 		switch (opcion) {
 		
-		case 1: tablaUno.crearCarro(); // 
+		case 1: tablaUno.crearCarro(); 
 		
 			break;
 			
